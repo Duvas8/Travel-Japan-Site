@@ -2,7 +2,7 @@
 this is a prject for making a site for traveling Japan
 ---
 ### Ideas for the futuer -  Rode Map
-- [ ] make a gride of pictures in the Travel courses section
+- [x] make a gride of pictures in the Travel courses section
 - learn how to inplement grid
 - Use picters in the  grid
 - Animet the picthers when hover
