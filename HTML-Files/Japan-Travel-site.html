@@ -1,57 +1,325 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie-edge">
-    <link rel="stylesheet" href="Japan-Travel-site.css">
-    <script async src="Japan-Travel-site.js"></script>
-    <title>Japan Travel</title>
-</head>
-<body>
-    <header>
-        <nav>
-            <h1>Travel Japan</h1>
-            <ul class="ul-nav">
-              <li><a data-page="home" href="">Home</a></li>
-              <li><a data-page="travel_courses" href="">Travel</a></li>
-              <li><a data-page="contact" href="">Contact</a></li>  
-              <li><a data-page="about" href="">About</a></li>
-              <div class="nav-bubble"></div>
-            </ul>
-            <div class="barsContainer" onclick="click3BarsIcon(this)">
-                <div class="bar1"></div>
-                <div class="bar2"></div>
-                <div class="bar3"></div>
-              </div>
-        </nav>
-    </header>
+*  {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <main>
-        <section data-index="0" class="home">
-            <h2>Home</h2>
-        </section>
+body {
+    font-family: sans-serif;
+}
 
-        <section data-index="1" class="travel_courses">
-            <h2>Travel Courses</h2>
-            <div class="grid-continer">
-                <div class="grid-item1"></div>
-                <div class="grid-item2"></div>
-                <div class="grid-item3"></div>
-                <div class="grid-item4"></div>
-                <div class="grid-item5"></div>
-            </div>
-        </section>
+header{
+    z-index: 100;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.7) ;
+    position: sticky;
+    top: 0px;
+    background: white;
+}    
+
+nav{
+    min-height: 10vh;
+    margin: auto;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav h1,
+nav ul {
+    font-size: 1.2rem;
+    flex:1; 
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    
+}
 
 
-        <section data-index="2" class="contact">
-            <h2>Contact</h2>
-            
-        </section>
 
-        <section data-index="3" class="about">
-            <h2>About</h2>
-        </section>
-    </main>
-</body>
-</html>
+nav  a {
+    color: black;
+    text-decoration: none;
+}
+
+
+
+section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -2;
+}
+
+section h2 {
+    font-size: 5rem;
+    color: white;
+}
+
+
+.home {
+background: linear-gradient(to right, #36d1dc, #5b86e5);
+}
+
+.travel_courses {
+    height: auto;
+    flex-direction: column;
+    background: linear-gradient(to right, #dce35b, #45b649); 
+}
+.travel_courses h2 {
+    padding: 5%;
+}
+
+.contact {
+    background:linear-gradient(to right, #F09819, #FF512F);
+}
+
+.about {
+    background: linear-gradient(to right, #834d9b, #d04ed6);
+}
+
+.nav-bubble {
+    position: absolute;
+    z-index: -2;
+    transform: scale(1.5);
+    transition: all 0.5s ease;
+}
+
+.barsContainer {
+    display: none;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  .bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: #333;
+    margin: 3px 0;
+    transition: 0.4s;
+  }
+  
+  .change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+  }
+  
+  .change .bar2 {opacity: 0;}
+  
+  .change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+  }
+
+.change .ul-nav  {
+    display: none;
+    
+}
+
+.grid-continer   {
+    position: relative;
+    padding: 5%;
+    height: auto;
+    width: 80%;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(250px , 1fr));
+    grid-auto-rows: 250px;
+    grid-gap: 10px;
+}
+
+.grid-continer > div  {
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    box-shadow: 3px 5px 10px #333;
+}
+
+.gallery-item {
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+}
+.gallery-item .image{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+}
+.gallery-item .image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.gallery-item:hover .image img{
+    transform: scale(1.3);
+}
+.gallery-item:hover .hover-img-info{
+     opacity: 0.8   ;
+}
+
+.hover-img-info {
+    margin: 0;
+    padding: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    color: white;
+    width: 100%;
+    height: 100%;
+    background:rgba(51, 51, 51, 1) ;
+    z-index: 4;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+
+  -webkit-transition: opacity .3s ease-in-out;
+  -moz-transition: opacity .3s ease-in-out;
+  -o-transition: opacity .3s ease-in-out;
+  transition: opacity .3s ease-in-out;
+}
+
+.hover-img-info h3{
+    margin: 10px;
+    font-size: 25px;
+    
+}
+
+
+.grid-item1{
+    grid-column: auto / span 3;
+
+}
+
+.grid-item2{
+    grid-column: auto / span 1 ;
+}
+.grid-item3{
+    grid-column: auto / span 2;
+}
+.grid-item4{
+    grid-column: auto / span 2;
+}
+.grid-item5{
+    
+    grid-column: auto / span 1;
+}
+
+
+
+@media (min-width: 1080px) {
+    .grid-item1{
+        grid-column: auto / span 3;
+    }
+    .grid-item2{
+        grid-column: auto / span 1 ;
+    }
+    .grid-item3{
+        grid-column: auto / span 2;
+    }
+    .grid-item4{
+        grid-column: auto / span 2;
+    }
+    .grid-item5{
+        
+        grid-column: auto / span 1;
+    }
+}
+
+@media ( max-width: 1079px){
+    .grid-item1{
+        grid-column: auto / span 2;
+    }
+    .grid-item2{
+        grid-column: auto / span 1 ;
+    }
+    .grid-item3{
+        grid-column: auto / span 1;
+    }
+    .grid-item4{
+        grid-column: auto / span 1;
+    }
+    .grid-item5{
+        
+        grid-column: auto / span 1;
+    }
+    .nav-bubble{
+       display: none;
+
+    }
+}
+
+@media (max-width: 759px ){
+    .grid-continer > div  {
+        grid-column: auto / span 1;
+    }
+}
+
+@media (max-width: 950px){
+
+    
+
+    .barsContainer{
+        position: absolute;
+        display: flex ;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        right: 5%;
+    }
+    
+        
+    .ul-nav{
+        position: fixed;
+        display: flex;
+        background: white;
+        flex-direction: column;
+        align-items: center;
+        width: 20%;
+        height: 50%;
+        right: 4%;
+        top: 15%;
+        box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.7) ;
+        transform: translateX(200%);
+        -webkit-transform: translateX(200%);
+        transition: all 0.5s ease-out;
+        }
+
+       .open.ul-nav {
+            transform: translateX(0);
+            -webkit-transform: translateX(0);
+            transition: all 0.5s ease-out;
+        }
+
+    li{
+        padding: 15%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+}
+
+
+@keyframes  hover-gallery-img {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+    
+}
