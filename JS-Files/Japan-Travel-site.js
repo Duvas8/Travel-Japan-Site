@@ -2,6 +2,9 @@ const sections = document.querySelectorAll('section');
 const navBubble = document.querySelector('.nav-bubble');
 const barsContainer = document.querySelector('.barsContainer')
 const ulNav = document.querySelector('.ul-nav');
+const galleryItem = document.querySelector('.gallery-item');
+const loginBtn = document.querySelector('.login-btn');
+const loginContainer = document.querySelector('.login-container')
 
 const gradienrts = [
     "linear-gradient(to right, #36d1dc, #5b86e5)",
@@ -33,7 +36,9 @@ function navCheck(entries) {
            navBubble.style.setProperty("width", `${navBubbleDirection.width}px`);
            navBubble.style.setProperty("top", `${navBubbleDirection.top}px`);
            navBubble.style.setProperty("left", `${navBubbleDirection.left}px`);
-           navBubble.style.background = gradienrts[gradientIndex]
+           navBubble.style.background = gradienrts[gradientIndex];
+
+           
        }
     });
 }
@@ -47,3 +52,67 @@ barsContainer.addEventListener('click', () => {
     barsContainer.classList.toggle("change");
     ulNav.classList.toggle("open");
   });
+
+  loginBtn.addEventListener("click", () => {
+    loginContainer.classList.toggle("open-login")
+    loginForm.classList.remove("form__hidden");
+    createAccountForm.classList.add("form__hidden");
+  })
+
+function setFormMessage(formElement, type, message){
+    const messageElement = formElement.querySelector(".form__message");
+
+    messageElement.textContent = message;
+    messageElement.classList.remove("form__message--success", "form__message--error")
+    messageElement.classList.add(`form__message--${type}`);
+}
+
+function setInputError(inputElement, message){
+
+    inputElement.classList.add(".form__input--error");
+    inputElement.parentElement.querySelector(".form__input--error--message").textContent = message;
+}
+
+function clearInputError(inputElement){
+
+    inputElement.classList.remove(".form__input--error");
+    inputElement.parentElement.querySelector(".form__input--error--message").textContent = "";
+}
+
+  
+      const loginForm = document.querySelector("#login");
+      const createAccountForm = document.querySelector("#createAccount");
+
+      document.querySelector("#linkCreateAccount").addEventListener("click", e => {
+        e.preventDefault();
+        loginForm.classList.add("form__hidden");
+        createAccountForm.classList.remove("form__hidden");
+      });
+
+      document.querySelector("#linkLogin").addEventListener("click", e => {
+        e.preventDefault();
+        loginForm.classList.remove("form__hidden");
+        createAccountForm.classList.add("form__hidden");
+      });
+
+      loginForm.addEventListener("submit", e => {
+        e.preventDefault();
+
+    // if iwant to submit the form using AJAX or Fetche i need to add " e - as a pareameter for the function  and  e.preventDefault".
+
+        setFormMessage(loginForm, "error", "Invalid Username/Password");
+        
+      });
+      
+      document.querySelectorAll(".form__input").forEach(inputElement => {
+          inputElement.addEventListener("blur", e => {
+              if(e.target.id === signupUsername  &&  e.target.value.length > 0  &&  e.target.value.length < 8 ) {
+                  setInputError(inputElement, "The username must be at least 8 characters in length");
+              };
+          });
+          inputElement.addEventListener("input", e => {
+              e.preventDefault();
+              clearInputError(inputElement);
+          })
+      });
+
