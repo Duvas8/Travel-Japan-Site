@@ -1,8 +1,30 @@
 const cards = document.querySelectorAll(".card");
 
+const mapInfo = [
+	{curessTitle : "Big City",
+	mapLat : 51.505,
+	mapLon : 0,
+	},
+	{curessTitle : "Food",
+	mapLat : 51.505,
+	mapLon : 0,
+	},
+	{curessTitle : "Nature",
+	mapLat : 51.505,
+	mapLon : 0,
+	},
+	{curessTitle : "Culture",
+	mapLat : 51.505,
+	mapLon : 0,
+	},
+	{curessTitle : "Pepole",
+	mapLat : 51.505,
+	mapLon : 0,
+	},
 
+];
 		
-		const toggleExpansion = (element, to, duration =350) => {
+		const toggleExpansion = (element, to, duration = 350) => {
 		  return new Promise((res) => {
 		    element.animate([
 		      {
@@ -28,7 +50,22 @@ const cards = document.querySelectorAll(".card");
 			})
 		}
 
-		const getCardContent = (title) => {
+		//maybe needs pormis and await
+		const createMap = (cardDataIndex) => {
+			const cardContentDiv = document.querySelector(".card-content");
+			const creatMapDiv = document.createElement("div");
+			creatMapDiv.id = "mapid";
+			cardContentDiv,appendChild(creatMapDiv);
+			
+			const mymap = L.map('mapid').setView([mapInfo[cardDataIndex].mapLat, mapInfo[cardDataIndex].mapLon], 13);
+
+			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+	 }).addTo(mymap);
+		};
+
+
+		const getCardContent = (title, mapLat, mapLon) => {
 			return `
             <div class="card-content">
             <h2>The ${title}</h2>
@@ -41,29 +78,29 @@ const cards = document.querySelectorAll(".card");
         </div>
         <div class="card-content">
             <h2>the routs</h2>
-            <div id="mapid">
-            <script async src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+			 <div id="mapid">
+			 </div>
+			 <script>
+			 const mymap = L.map('mapid').setView([${mapLat}, ${mapLon}], 13);
 
-            <script>
-            
-            var mymap = L.map('mapid').setView([51.505, -0.09], 13);
-            
-            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(mymap);
-            
-            
-            </script></div>
+			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+		 attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+	 }).addTo(mymap);
+		};
+			 </script>
+
+           </div>
         </div>
 			`;
 		}
 
 		const onCardClick = async (e) => {
             const card = e.currentTarget;
-            const cardData = e.currentTarget.dataset.page;
-            
-            // check if 
-            console.log(cardData);
+			const cardDataIndex = e.currentTarget.dataset.index;
+			const mapLat = mapInfo[cardDataIndex].mapLat;
+			const mapLon = mapInfo[cardDataIndex].mapLon;
+			
+	
 			// clone the card
 			const cardClone = card.cloneNode(false);
 			// get the location of the card in the view
@@ -120,7 +157,7 @@ const cards = document.querySelectorAll(".card");
 				});
 			// expand the clone card
 			await toggleExpansion(cardClone, {top: "0", left: "auto", width: '100%', height: 'auto'});
-			const content = getCardContent(cardData)
+			const content = getCardContent(mapInfo[cardDataIndex].curessTitle, mapLat, mapLon)
             // set the display block so the content will follow the normal flow in case the original card is not display block
             
             cardClone.style = ` 
@@ -139,6 +176,8 @@ const cards = document.querySelectorAll(".card");
 			// append the close button after the expansion is done
 			cardClone.appendChild(closeButton);
 			cardClone.insertAdjacentHTML('afterbegin', content);
+			
+			createMap(cardDataIndex);
 		};
 
         
