@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie-edge">
     <link rel="stylesheet" href="Japan-Travel-site-cursses-page.css"> 
-          <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-      <script async src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-            
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>     
 
 
-     <script async  src="Japan-Travel-site-cursses-page.js"></script>
+     <script async  src="Japan-Travel-site-cursses-page2.js"></script>
+    
 
-            <style>
-            
-            #mapid { height: 180px; }
-            
-            </style>
+        
     <title>Japan Travel Curess Page</title>
 </head>
 <body>
@@ -35,73 +35,112 @@
         </nav>
     </header>
     <main>
-           
+        
         <div class="flex-curess-container">
-            <div class="card item1"  data-page="big-city">
+            <div class="card "  data-page="big-city" data-index="0">
                 <div class="image">
                     <img src="https://source.unsplash.com/1600x900/?city   " alt="tokyo">
                 </div>
                 <div class="hover-img-info">
-                    <div class="close-info"></div>
-                    <h3>The Big City</h3>
-                    <div class="coures-info">
+                    <div class="card-content">
+                    <h3 id="cardTitle">The Big City</h3>
+                    <p class="coures-info">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                         Quis magnam dolorem vero voluptatum similique tempore cumque iste harum officia! 
                         Similique recusandae magni voluptas quod deleniti porro voluptatum ab quisquam perferendis.
-                    </div>
+                    </p>
+                </div>
+                    <div class="card-content mapDiv">
+                        <h3>the routs</h3>
+                            <div id="mapid-big-city">
+                            </div>
+                         </div>
                 </div>
             </div>
-            <div class="card item2" data-page="food">
+            
+            <div class="card " data-page="food" data-index="1">
                 <div class="image">
                     <img src="https://source.unsplash.com/1600x900/?japan-food   " alt="food">
                 </div>
                 <div class="hover-img-info">
-                    <h3>The food</h3>
-                    <div class="coures-info">
+                    <div class="card-content">
+                    <h3 id="cardTitle">The food</h3>
+                     <div class="coures-info">
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
                         Esse sequi dicta earum architecto obcaecati adipisci eius reprehenderit distinctio itaque laboriosam.
+                        </div>
                     </div>
+                    <div class="card-content mapDiv">
+                    <h3>the routs</h3>
+                        <div id="mapid-food">
+
+                        </div>
+                     </div>
                 </div>
             </div>
-            <div class="card item3" data-page="nature">
+            <div class="card " data-page="nature" data-index="2">
                 <div class="image">
                     <img src="https://source.unsplash.com/1600x900/?japan-art   " alt="art">
                 </div>
                 <div class="hover-img-info">
-                    <h3>The Nature</h3>
+                    <div class="card-content ">
+                    <h3 id="cardTitle">The Nature</h3>
                     <div class="coures-info">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                         Quis magnam dolorem vero voluptatum similique tempore cumque iste harum officia! 
                         Similique recusandae magni voluptas quod deleniti porro voluptatum ab quisquam perferendis.
                     </div>
                 </div>
+                    <div class="card-content mapDiv">
+                        <h3>the routs</h3>
+                            <div id="mapid-nature">
+    
+                            </div>
+                         </div>
+                </div>
             </div>
-            <div class="card item4" data-page="culture">
+            <div class="card " data-page="culture" data-index="3">
                 <div class="image">
                     <img src="https://source.unsplash.com/1600x900/?japan-culter  " alt="tokyo">
                 </div>
                 <div class="hover-img-info">
-                    <h3>The Culture</h3>
+                    <div class="card-content ">
+                    <h3 id="cardTitle">The Culture</h3>
                     <div class="coures-info">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                         Quis magnam dolorem vero voluptatum similique tempore cumque iste harum officia! 
                     </div>
                 </div>
+                    <div class="card-content mapDiv">
+                        <h3>the routs</h3>
+                            <div id="mapid-culture">
+    
+                            </div>
+                         </div>
+                </div>
             </div>
-            <div class="card item5" data-page="pepole">
+            <div class="card " data-page="pepole" data-index="4">
                 <div class="image">
                     <img src="https://source.unsplash.com/1600x900/?japan-people   " alt="people">
                 </div>
                 <div class="hover-img-info">
-                    <h3>The Pepole</h3>
+                    <div class="card-content">
+                    <h3 id="cardTitle">The Pepole</h3>
                     <div class="coures-info">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                         Quis magnam dolorem vero voluptatum similique tempore cumque iste harum officia! 
                     </div>
                 </div>
+                    <div class="card-content mapDiv">
+                        <h3>the routs</h3>
+                            <div id="mapid-pepole">
+    
+                            </div>
+                         </div>
+                </div>
             </div>
         </div>
-
+        
         
 
 
